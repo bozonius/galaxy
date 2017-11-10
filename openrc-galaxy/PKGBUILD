@@ -52,8 +52,9 @@ pkgname=(
 #         'docker-openrc'
 #         'rng-tools-openrc'
         'toxcore-openrc'
+	'dovecot-openrc'
 )
-pkgver=20170925
+pkgver=20171109
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -152,6 +153,7 @@ source=(
         "rngd.initd::${_url}/sys-apps/rng-tools/files/rngd-initd-r1-4.1"
         "tox.confd::${_url}/net-libs/tox/files/confd"
         "tox.initd::${_url}/net-libs/tox/files/initd"
+	"dovecot.initd::https://gitweb.gentoo.org/repo/gentoo.git/tree/net-mail/dovecot/files/dovecot.init-r4"
 )
 
 # pkgver() {
@@ -629,6 +631,13 @@ package_toxcore-openrc() {
     _inst_initd 'tox'
 }
 
+package_dovecot-openrc() {
+    pkgdesc="OpenRC dovecot init script"
+    depends=('dovecot' 'openrc')
+    
+    _inst_initd 'dovecot'
+}
+
 sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             '5dcf5721a129b3782c13fc453853c390c34e2ad4ee00706388ce014454b063ee'
             '5ee23ee05da536fb67456c034e757841b27bc8528d93d2bc835e7427fe77d05e'
@@ -724,4 +733,5 @@ sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             'cdbd39f7446f12a9b78e87e9f135cfd0f6f364c4fa4ade0c96084b85c32afc38'
             '3ad9a52d86e54eb755923242b1314584d5c66ab55221f6063a16c23477957a25'
             'eb0aa3b25232a64971c6b39799c384577cf85ffe16ec41119b6b4e8336649cd5'
-            '6d490b473102783ec9a491a9b7f4886d52393498e5495bca4d27a95fcbf35f52')
+            '6d490b473102783ec9a491a9b7f4886d52393498e5495bca4d27a95fcbf35f52'
+	    '71b047bf59df6528e8352c326797afb5f6643ac935f41411a2dd2bf4e969cb13')
